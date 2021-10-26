@@ -116,37 +116,6 @@ function sortNumbers(arr = []) {
 }
 
 /** 実行 */
-// const randomNumbers = getRamdomNumbers(100);
-// const result = sortNumbers(randomNumbers);
-// console.log(result);
-
-// /** グローバルスコープ: ここから */
-// const global = "global";
-
-// /** 関数スコープ: ここから */
-// function fn() {
-//   // globalはどこからでも参照できる
-//   console.log(global);
-
-//   // localはfn関数の中でだけ参照できる
-//   const local = "local";
-//   console.log(local);
-
-//   /** ブロックスコープ: ここから */
-//   for (let i = 0; i < 10; i++) {
-//     // iはfor文の中だけで参照できる
-//     console.log(i);
-//   }
-//   /** ブロックスコープ: ここまで */
-// }
-// /** 関数スコープ: ここまで */
-
-// fn();
-// /** グローバルスコープ: ここまで */
-
-for (let i = 0; i < 10; i++) {
-  console.log(i);
-}
-for (let i = 10; i > 0; i--) {
-  console.log(i);
-}
+const randomNumbers = getRamdomNumbers(100);
+const result = sortNumbers(randomNumbers);
+console.log(result);
