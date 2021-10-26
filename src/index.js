@@ -86,26 +86,67 @@ function findPrimeNumber(num) {
   return isPrimeNumber;
 }
 
-const randomNumbers = getRamdomNumbers(100);
-const result = {
-  even: [],
-  odd: [],
-  prime: []
-};
+/**
+ * ランダムな数値配列をループさせて、偶数、奇数、素数に分類する
+ * @param {number[]} arr array of random numbers
+ * @returns {object} result object
+ */
+function sortNumbers(arr = []) {
+  /** 結果を格納するオブジェクト */
+  const result = {
+    even: [],
+    odd: [],
+    prime: []
+  };
 
-for (let i = 0; i < randomNumbers.length; i++) {
-  const num = randomNumbers[i];
-  // 先に素数の判定をして、素数なら以降の判定はしない。
-  if (findPrimeNumber(num)) {
-    result.prime.push(num);
-  } else {
-    if (findEvenOrOdd(num)) {
-      result.even.push(num);
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+    // 先に素数の判定をして、素数なら以降の判定はしない。
+    if (findPrimeNumber(num)) {
+      result.prime.push(num);
     } else {
-      result.odd.push(num);
+      if (findEvenOrOdd(num)) {
+        result.even.push(num);
+      } else {
+        result.odd.push(num);
+      }
     }
   }
+  return result;
 }
 
-/** 結果発表 */
-console.log(result);
+/** 実行 */
+// const randomNumbers = getRamdomNumbers(100);
+// const result = sortNumbers(randomNumbers);
+// console.log(result);
+
+// /** グローバルスコープ: ここから */
+// const global = "global";
+
+// /** 関数スコープ: ここから */
+// function fn() {
+//   // globalはどこからでも参照できる
+//   console.log(global);
+
+//   // localはfn関数の中でだけ参照できる
+//   const local = "local";
+//   console.log(local);
+
+//   /** ブロックスコープ: ここから */
+//   for (let i = 0; i < 10; i++) {
+//     // iはfor文の中だけで参照できる
+//     console.log(i);
+//   }
+//   /** ブロックスコープ: ここまで */
+// }
+// /** 関数スコープ: ここまで */
+
+// fn();
+// /** グローバルスコープ: ここまで */
+
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+for (let i = 10; i > 0; i--) {
+  console.log(i);
+}
