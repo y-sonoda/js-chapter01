@@ -1,28 +1,6 @@
 import "./styles.css";
 
 /**
- * ランダムに生成された自然数の中から、偶数、奇数、素数に分類するプログラム
- * 出力結果は、それぞれ偶数、奇数、素数の配列に格納してください。
- * 素数かつ偶数（２だけですが）、素数かつ奇数の数は、素数の配列にだけ格納してください
- * (↑つまり素数の判定を先にやればいいのです)
- * 乱数を生成するプログラムはコチラで用意します。
- * ググれば秒で答えが出てきますが、自分で考えてみてください。
- */
-
-/**
- * ヒント①：偶数、奇数の判定
- * ２で割った余りが0であれば偶数、そうでなければ奇数です
- * 余りの計算には、%演算子を使います
- */
-
-/**
- * ヒント②:素数の判定
- * 素数とは、1より大きい自然数で、1と自分自身でしか割り切れない自然数のことです。
- * 素数ではない数の方が圧倒的に多いです。なので、素数でないものを探した方が早いです。
- * つまり、自分自身を２から自分自身まで順番に割っていき、余りが０の時があれば、それは素数ではありません。
- */
-
-/**
  * generate random number
  * @param {number} min minimun number
  * @param {number} max maximum number
@@ -76,7 +54,7 @@ function findPrimeNumber(num) {
   if (num % 2 === 0) return false;
 
   let isPrimeNumber = true;
-  for (let i = 2; i < num; i++) {
+  for (let i = 2; i < Math.ceil(Math.sqrt(num)); i++) {
     // １と自分自身以外で割り切れる数字があれば素数ではない
     if (num % i === 0) {
       isPrimeNumber = false;
@@ -86,36 +64,78 @@ function findPrimeNumber(num) {
   return isPrimeNumber;
 }
 
-/**
- * ランダムな数値配列をループさせて、偶数、奇数、素数に分類する
- * @param {number[]} arr array of random numbers
- * @returns {object} result object
- */
-function sortNumbers(arr = []) {
-  /** 結果を格納するオブジェクト */
-  const result = {
-    even: [],
-    odd: [],
-    prime: []
-  };
+const randomNumbers = getRamdomNumbers(100);
+const result = {
+  even: [],
+  odd: [],
+  prime: []
+};
 
-  for (let i = 0; i < arr.length; i++) {
-    const num = arr[i];
-    // 先に素数の判定をして、素数なら以降の判定はしない。
-    if (findPrimeNumber(num)) {
-      result.prime.push(num);
+for (let i = 0; i < randomNumbers.length; i++) {
+  const num = randomNumbers[i];
+  // 先に素数の判定をして、素数なら以降の判定はしない。
+  if (findPrimeNumber(num)) {
+    result.prime.push(num);
+  } else {
+    if (findEvenOrOdd(num)) {
+      result.even.push(num);
     } else {
-      if (findEvenOrOdd(num)) {
-        result.even.push(num);
-      } else {
-        result.odd.push(num);
-      }
+      result.odd.push(num);
     }
   }
+}
+
+/** 結果発表 */
+// console.log(result);
+
+/**
+ * Question2
+ * 与えられた自然数を素因数分解するプログラムも書いてみましょう。
+ * 素因数分解とは、ある自然数を素数の積の形で表すことです。
+ * 例１）　60  = 2 * 2 * 3 * 5 = 2^2 * 3 * 5
+ * 例２）　210 = 2 * 3 * 5 * 7
+ * 出力結果は配列に格納してください。前述の例だと、
+ * 例１）　60 -> [2, 2, 3, 5]
+ * 例２）　210 -> [2, 3, 5, 7]
+ * となります。
+ */
+
+/**
+ * 先ほど作った素数を判定する関数を使い、素数の配列を予め用意しておくのが楽チンです。
+ * 1000までで、素因数分解したときに、最も多い因数とその組み合わせはなんでしょう？
+ * （計算が得意な方なら暗算できちゃいますねw）
+ */
+
+/**
+ * 大きな数を計算させようとすると、フリーズする可能性があります！！以下を遵守してください。
+ *  - 最大値は、1000までにとどめましょう。
+ *  - 実行時以外はコメントアウトしましょう！！
+ */
+
+function primeFactorization(n, primeNumbers, rootN) {
+  const result = [];
+
+  let i = 0;
+  while (primeNumbers[i] <= rootN) {
+    const p = primeNumbers[i];
+    if (n % p === 0) {
+      result.push(p);
+      n = n / p;
+    } else {
+      i++;
+    }
+  }
+  if (n !== 1) result.push(n);
   return result;
 }
 
-/** 実行 */
-const randomNumbers = getRamdomNumbers(100);
-const result = sortNumbers(randomNumbers);
-console.log(result);
+function iter(n) {
+  const rootN = Math.ceil(Math.sqrt(n));
+  const numbers = [...Array(rootN).keys()].map((i) => ++i);
+  const primeNumbers = numbers.filter((n) => findPrimeNumber(n));
+  for (let i = 2; i < n; i++) {
+    const product = primeFactorization(i, primeNumbers, rootN);
+    console.log(i, product);
+  }
+}
+// iter(200);
