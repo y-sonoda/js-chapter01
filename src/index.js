@@ -18,7 +18,7 @@ function getRandomInt(min, max) {
  * @param {Number} times elements count
  * @returns {Number[]} array of random numbers
  */
-export function getRamdomNumbers(times = 100) {
+export function getRandomNumbers(times = 100) {
   const randomNumbers = [];
   for (let i = 0; i < times; i++) {
     randomNumbers.push(getRandomInt(1, 100));
