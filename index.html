@@ -3,12 +3,58 @@
   <head>
     <title>Parcel Sandbox</title>
     <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
 
   <body>
-    <h1>Hello, JavaScript!</h1>
-    <div id="app"></div>
+    <div id="app">
+      <h1 class="display-1">基礎編</h1>
+      <hr />
+      <div class="container">
+        <h1 class="display-3">Q1</h1>
+        <p class="lead">
+          ランダムに生成された自然数の配列を、偶数、奇数、素数に分類するプログラムを考えましょう。
+        </p>
+        <div class="alert alert-primary" role="hint">
+          ２で割った余が0であれば偶数、1ならば奇数です。
+          余りの計算には、剰余演算子（%）を使います（modとかはないです）。
+        </div>
+        <div class="alert alert-primary" role="hint">
+          素数とは、１より大きい自然数で、１と自分自身でしか割り切れない自然数のことです。
+        </div>
+      </div>
+      <div class="container">
+        <h1 class="display-3">Q2</h1>
+        <p class="lead">
+          任意の自然数を素因数分解するプログラムを考えましょう。
+          素因数分解とは、ある自然数を素数の積の形で表すことです。
+        </p>
+        <div class="alert alert-success" role="alert">
+          例1）　60 = 2 * 2 * 3 * 5 = 2^2 * 3 * 5<br />
+          例2）　210 = 2 * 3 * 5 * 7
+        </div>
+        <div class="alert alert-danger" role="alert">
+          桁数が多いと大変なことになるので1000くらいまでにしましょう
+          （それぐらいなら暗算できることは言わない）。
+        </div>
+      </div>
+    </div>
 
     <script src="src/index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
