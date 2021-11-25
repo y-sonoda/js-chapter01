@@ -25,5 +25,5 @@ function getRamdomNumbers(times = 100) {
   }
   return randomNumbers;
 }
-const result = getRamdomNumbers();
-console.log(result);
+// const result = getRamdomNumbers();
+// console.log(result);
