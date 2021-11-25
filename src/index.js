@@ -2,9 +2,9 @@ import "./styles.css";
 
 /**
  * generate random number
- * @param {number} min minimun number
- * @param {number} max maximum number
- * @returns {number} random number
+ * @param {Number} min minimun number
+ * @param {Number} max maximum number
+ * @returns {Number} random number
  * @see https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random
  */
 function getRandomInt(min, max) {
@@ -15,15 +15,13 @@ function getRandomInt(min, max) {
 
 /**
  * generate array of random numbers
- * @param {number} times elements count
- * @returns {number[]} array of random numbers
+ * @param {Number} times elements count
+ * @returns {Number[]} array of random numbers
  */
-function getRamdomNumbers(times = 100) {
+export function getRamdomNumbers(times = 100) {
   const randomNumbers = [];
   for (let i = 0; i < times; i++) {
     randomNumbers.push(getRandomInt(1, 100));
   }
   return randomNumbers;
 }
-// const result = getRamdomNumbers();
-// console.log(result);
