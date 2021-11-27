@@ -90,34 +90,49 @@ function isPrimeNumber(num) {
 }
 
 /**
- * 素因数分解
- * 2, 3, 5, 7, 11, 13, ...
- * ある自然数nを素因数分解する場合、２から√nまでの素数を順番に割っていき、
- * その割った数を、配列に格納していく。
+ * 素数の配列を作る関数
+ * 数字numを受け取り、2からnumまでの素数の配列を返す
  */
-
-function primeFactarization(num) {
-  /** 2から√numまでの素数の配列 */
-  const rootNum = Math.ceil(Math.sqrt(num));
+function getPrimeNumbers(num) {
   let i = 2;
   const primeNumbers = [];
-  while (i < rootNum) {
+  while (i < num) {
     if (isPrimeNumber(i)) {
       primeNumbers.push(i);
     }
     i++;
   }
+  return primeNumbers;
+}
 
-  /**素因数分解 */
+/**
+ * 素因数分解するプログラム
+ * ある自然数nを素因数分解する場合、２から√nまでの素数を順番に割っていき、その割った数を、配列に格納していく。
+ * 素数pが√n以下である限りループする
+ * 　・nがpで割り切れる場合
+ *    ・pを結果配列にプッシュする
+ *    ・nをnをpで割った商で上書きする
+ * 　・nがpで割り切れない場合
+ *    ・次の素数で割る
+ * （ループから抜ける）
+ * 商nを結果配列にプッシュする
+ * ＊この時点でnは√n以下の素数で割り切れないので、１か素数
+ */
+function primeFactarization(num) {
+  /** 2から√numまでの素数の配列 */
+  const rootNum = Math.ceil(Math.sqrt(num));
+  const primeNumbers = getPrimeNumbers(rootNum);
+
+  /** 素因数分解 */
   const result = [];
-  let j = 0;
-  while (primeNumbers[j] <= rootNum) {
-    const p = primeNumbers[j];
+  let i = 0;
+  while (primeNumbers[i] <= rootNum) {
+    const p = primeNumbers[i];
     if (num % p === 0) {
       result.push(p);
       num = num / p;
     } else {
-      j++;
+      i++;
     }
   }
   if (num !== 1) result.push(num);
