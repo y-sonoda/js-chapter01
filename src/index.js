@@ -164,9 +164,7 @@ console.log(result2);
  */
 
 let total = 0;
-for (let i = 2; i < 10; i++) {
-  // iが10以上ならばループを抜ける
-  if (i >= 1000) break;
+for (let i = 1; i < 1000; i *= 2) {
   total += i;
 }
-console.log(total); // 45
+console.log(total);
